@@ -215,25 +215,34 @@ function initScrollEffects() {
 function initFormHandlers() {
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        // If Netlify handles the form, let the browser submit normally.
-        if (!contactForm.hasAttribute('data-netlify')) {
-            contactForm.addEventListener('submit', handleFormSubmit);
-        }
+        contactForm.addEventListener('submit', handleNetlifySubmit);
     }
 }
 
-function handleFormSubmit(e) {
+function handleNetlifySubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
-    console.log('Form submitted:', data);
+    const payload = new URLSearchParams(formData).toString();
 
     const message = AppState.currentLang === 'sk'
         ? 'Správa bola odoslaná!'
         : 'Message sent successfully!';
 
-    alert(message);
-    e.target.reset();
+    fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: payload
+    })
+    .then(() => {
+        alert(message);
+        e.target.reset();
+    })
+    .catch((err) => {
+        console.error('Form submit error', err);
+        alert(AppState.currentLang === 'sk'
+            ? 'Odoslanie zlyhalo, skúste znova.'
+            : 'Submission failed, please try again.');
+    });
 }
 
 function initMobileMenu() {

@@ -215,7 +215,10 @@ function initScrollEffects() {
 function initFormHandlers() {
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', handleFormSubmit);
+        // If Netlify handles the form, let the browser submit normally.
+        if (!contactForm.hasAttribute('data-netlify')) {
+            contactForm.addEventListener('submit', handleFormSubmit);
+        }
     }
 }
 

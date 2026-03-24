@@ -1,739 +1,1322 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Andrej Andrašik – Portfolio</title>
     <script>
-        if (typeof console !== 'undefined' && console.warn) {
-            const originalWarn = console.warn;
-            console.warn = function(...args) {
-                if (args[0] && typeof args[0] === 'string' && args[0].includes('tailwindcss.com')) {
-                    return;
-                }
-                originalWarn.apply(console, args);
-            };
-        }
+      if (typeof console !== "undefined" && console.warn) {
+        const originalWarn = console.warn;
+        console.warn = function (...args) {
+          if (
+            args[0] &&
+            typeof args[0] === "string" &&
+            args[0].includes("tailwindcss.com")
+          ) {
+            return;
+          }
+          originalWarn.apply(console, args);
+        };
+      }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="body-main" data-theme="dark" data-lang="en" data-dir="ltr">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Fira+Code:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="body-main" data-theme="dark" data-lang="en" data-dir="ltr">
     <div class="loader-screen" id="loader">
-        <div class="loader-content">
-            <div class="loader-code-text">
-                <div class="code-line" data-line="1">const portfolio = {</div>
-                <div class="code-line" data-line="2">  loading: true,</div>
-                <div class="code-line" data-line="3">  status: 'initializing...'</div>
-                <div class="code-line" data-line="4">};</div>
-            </div>
-            <div class="loader-spinner-wrapper">
-                <div class="loader-spinner"></div>
-            </div>
-            <div class="loader-progress-wrapper">
-                <div class="loader-progress-bar"></div>
-            </div>
-            <div class="loader-percentage" id="loaderPercent">0%</div>
+      <div class="loader-content">
+        <div class="loader-code-text">
+          <div class="code-line" data-line="1">const portfolio = {</div>
+          <div class="code-line" data-line="2">loading: true,</div>
+          <div class="code-line" data-line="3">status: 'initializing...'</div>
+          <div class="code-line" data-line="4">};</div>
         </div>
+        <div class="loader-spinner-wrapper">
+          <div class="loader-spinner"></div>
+        </div>
+        <div class="loader-progress-wrapper">
+          <div class="loader-progress-bar"></div>
+        </div>
+        <div class="loader-percentage" id="loaderPercent">0%</div>
+      </div>
     </div>
 
     <header class="main-header" id="header">
-        <nav class="nav-container">
-            <div class="nav-brand">
-                <div class="brand-logo">
-                    <span class="logo-bracket">&lt;</span>
-                    <span class="logo-text">AA</span>
-                    <span class="logo-bracket">/&gt;</span>
-                </div>
-            </div>
-            <div class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-link active" data-section="home">
-                    <i class="fas fa-home"></i>
-                    <span class="nav-text" data-text-en="Home" data-text-sk="Domov">Home</span>
-                </a>
-                <a href="#about" class="nav-link" data-section="about">
-                    <i class="fas fa-user"></i>
-                    <span class="nav-text" data-text-en="About" data-text-sk="O mne">About</span>
-                </a>
-                <a href="#skills" class="nav-link" data-section="skills">
-                    <i class="fas fa-code"></i>
-                    <span class="nav-text" data-text-en="Skills" data-text-sk="Zručnosti">Skills</span>
-                </a>
-                <a href="#experience" class="nav-link" data-section="experience">
-                    <i class="fas fa-briefcase"></i>
-                    <span class="nav-text" data-text-en="Experience" data-text-sk="Skúsenosti">Experience</span>
-                </a>
-                <a href="#projects" class="nav-link" data-section="projects">
-                    <i class="fas fa-rocket"></i>
-                    <span class="nav-text" data-text-en="Projects" data-text-sk="Projekty">Projects</span>
-                </a>
-                <a href="#contact" class="nav-link" data-section="contact">
-                    <i class="fas fa-envelope"></i>
-                    <span class="nav-text" data-text-en="Contact" data-text-sk="Kontakt">Contact</span>
-                </a>
-            </div>
-            <div class="nav-controls">
-                <button class="lang-toggle" id="langToggle" title="Toggle Language">
-                    <i class="fas fa-language"></i>
-                    <span class="lang-text">SK</span>
-                </button>
-                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="menu-toggle" id="menuToggle" title="Toggle Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
+      <nav class="nav-container">
+        <div class="nav-brand">
+          <div class="brand-logo">
+            <span class="logo-bracket">&lt;</span>
+            <span class="logo-text">AA</span>
+            <span class="logo-bracket">/&gt;</span>
+          </div>
+        </div>
+        <div class="nav-menu" id="navMenu">
+          <a href="#home" class="nav-link active" data-section="home">
+            <i class="fas fa-home"></i>
+            <span class="nav-text" data-text-en="Home" data-text-sk="Domov"
+              >Home</span
+            >
+          </a>
+          <a href="#about" class="nav-link" data-section="about">
+            <i class="fas fa-user"></i>
+            <span class="nav-text" data-text-en="About" data-text-sk="O mne"
+              >About</span
+            >
+          </a>
+          <a href="#skills" class="nav-link" data-section="skills">
+            <i class="fas fa-code"></i>
+            <span
+              class="nav-text"
+              data-text-en="Skills"
+              data-text-sk="Zručnosti"
+              >Skills</span
+            >
+          </a>
+          <a href="#experience" class="nav-link" data-section="experience">
+            <i class="fas fa-briefcase"></i>
+            <span
+              class="nav-text"
+              data-text-en="Experience"
+              data-text-sk="Skúsenosti"
+              >Experience</span
+            >
+          </a>
+          <a href="#projects" class="nav-link" data-section="projects">
+            <i class="fas fa-rocket"></i>
+            <span
+              class="nav-text"
+              data-text-en="Latest Projects"
+              data-text-sk="Najnovšie projekty"
+              >Latest Projects</span
+            >
+          </a>
+          <a href="#contact" class="nav-link" data-section="contact">
+            <i class="fas fa-envelope"></i>
+            <span class="nav-text" data-text-en="Contact" data-text-sk="Kontakt"
+              >Contact</span
+            >
+          </a>
+        </div>
+        <div class="nav-controls">
+          <button class="lang-toggle" id="langToggle" title="Toggle Language">
+            <i class="fas fa-language"></i>
+            <span class="lang-text">SK</span>
+          </button>
+          <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="menu-toggle" id="menuToggle" title="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
     </header>
 
     <main class="main-content">
-        <section id="home" class="hero-section">
-            <div class="hero-background">
-                <div class="code-grid-bg"></div>
-                <div class="floating-particles" id="particles"></div>
+      <section id="home" class="hero-section">
+        <div class="hero-background">
+          <div class="code-grid-bg"></div>
+          <div class="floating-particles" id="particles"></div>
+        </div>
+        <div class="hero-container">
+          <div class="hero-content">
+            <div class="hero-greeting">
+              <span
+                class="greeting-text"
+                data-text-en="Hello, I'm"
+                data-text-sk="Ahoj, som"
+                >Hello, I'm</span
+              >
+              <span class="greeting-cursor">|</span>
             </div>
-            <div class="hero-container">
-                <div class="hero-content">
-                    <div class="hero-greeting">
-                        <span class="greeting-text" data-text-en="Hello, I'm" data-text-sk="Ahoj, som">Hello, I'm</span>
-                        <span class="greeting-cursor">|</span>
-                    </div>
-                    <h1 class="hero-name" id="heroName">
-                        <span class="name-prefix">const</span>
-                        <span class="name-operator">=</span>
-                        <span class="name-value">Andrej</span>
-                        <span class="name-suffix">;</span>
-                    </h1>
-                    <div class="hero-title">
-                        <span class="title-prefix">//</span>
-                        <span class="title-text" data-text-en="Frontend Developer • WordPress & React" data-text-sk="Frontend vývojár • WordPress & React">Frontend Developer • WordPress & React</span>
-                    </div>
-                    <p class="hero-description" data-text-en="I craft fast marketing sites and e-shops in WordPress + WooCommerce, then extend them with React/Next.js when products need more." data-text-sk="Tvorím rýchle weby a e-shopy vo WordPresse + WooCommerce a podľa potreby ich rozširujem Reactom/Next.js.">
-                        I craft fast marketing sites and e-shops in WordPress + WooCommerce, then extend them with React/Next.js when products need more.
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#contact" class="btn btn-primary">
-                            <span data-text-en="Get In Touch" data-text-sk="Napíš mi">Get In Touch</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                        <a href="#projects" class="btn btn-secondary">
-                            <span data-text-en="View Projects" data-text-sk="Pozri projekty">View Projects</span>
-                            <i class="fas fa-code"></i>
-                        </a>
-                    </div>
-                    <div class="hero-social">
-                        <a href="https://github.com/deboker" class="social-icon" title="GitHub" target="_blank" rel="noreferrer">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/andrej-andra%C5%A1ik-542091aa/" class="social-icon" title="LinkedIn" target="_blank" rel="noreferrer">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://x.com/AndrasikAndrej" class="social-icon" title="X" target="_blank" rel="noreferrer">
-                            <i class="fab fa-x-twitter"></i>
-                        </a>
-                        <a href="mailto:andrasik.andrej@gmail.com" class="social-icon" title="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-image-wrapper">
-                    <div class="hero-image-container">
-                        <div class="profile-image-glow"></div>
-                        <div class="profile-image-frame">
-                            <div class="profile-image" id="profileImage">
-                                <div class="profile-placeholder">
-                                    <i class="fas fa-code"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="floating-badge badge-1">
-                            <i class="fab fa-react"></i>
-                            <div class="badge-content">
-                                <span class="badge-title">React</span>
-                                <span class="badge-libs">Hooks, Next.js, Redux</span>
-                            </div>
-                        </div>
-                        <div class="floating-badge badge-2">
-                            <i class="fab fa-node-js"></i>
-                            <div class="badge-content">
-                                <span class="badge-title">Node.js</span>
-                                <span class="badge-libs">Express, Fastify, Prisma</span>
-                            </div>
-                        </div>
-                        <div class="floating-badge badge-3">
-                            <i class="fab fa-wordpress-simple"></i>
-                            <div class="badge-content">
-                                <span class="badge-title">WordPress</span>
-                                <span class="badge-libs">WooCommerce, ACF, WPML</span>
-                            </div>
-                        </div>
-                        <div class="floating-badge badge-4">
-                            <i class="fas fa-shopping-cart"></i>
-                            <div class="badge-content">
-                                <span class="badge-title">WooCommerce</span>
-                                <span class="badge-libs">Checkout, Subscriptions, Multilingual</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <h1 class="hero-name" id="heroName">
+              <span class="name-prefix">const</span>
+              <span class="name-operator">=</span>
+              <span class="name-value">Andrej</span>
+              <span class="name-suffix">;</span>
+            </h1>
+            <div class="hero-title">
+              <span class="title-prefix">//</span>
+              <span
+                class="title-text"
+                data-text-en="Frontend Developer • WordPress & React"
+                data-text-sk="Frontend vývojár • WordPress & React"
+                >Frontend Developer • WordPress & React</span
+              >
             </div>
-            <div class="scroll-indicator">
-                <div class="scroll-mouse">
-                    <div class="scroll-wheel"></div>
-                </div>
-                <span class="scroll-text" data-text-en="Scroll Down" data-text-sk="Posuň sa nižšie">Scroll Down</span>
+            <p
+              class="hero-description"
+              data-text-en="I craft fast marketing sites and e-shops in WordPress + WooCommerce, then extend them with React/Next.js when products need more."
+              data-text-sk="Tvorím rýchle weby a e-shopy vo WordPresse + WooCommerce a podľa potreby ich rozširujem Reactom/Next.js."
+            >
+              I craft fast marketing sites and e-shops in WordPress +
+              WooCommerce, then extend them with React/Next.js when products
+              need more.
+            </p>
+            <div class="hero-buttons">
+              <a href="#contact" class="btn btn-primary">
+                <span data-text-en="Get In Touch" data-text-sk="Napíš mi"
+                  >Get In Touch</span
+                >
+                <i class="fas fa-arrow-right"></i>
+              </a>
+              <a href="#projects" class="btn btn-secondary">
+                <span data-text-en="View Projects" data-text-sk="Pozri projekty"
+                  >View Projects</span
+                >
+                <i class="fas fa-code"></i>
+              </a>
             </div>
-        </section>
+            <div class="hero-social">
+              <a
+                href="https://github.com/deboker"
+                class="social-icon"
+                title="GitHub"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <i class="fab fa-github"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/andrej-andra%C5%A1ik-542091aa/"
+                class="social-icon"
+                title="LinkedIn"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                href="https://x.com/AndrasikAndrej"
+                class="social-icon"
+                title="X"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <i class="fab fa-x-twitter"></i>
+              </a>
+              <a
+                href="mailto:andrasik.andrej@gmail.com"
+                class="social-icon"
+                title="Email"
+              >
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+          <div class="hero-image-wrapper">
+            <div class="hero-image-container">
+              <div class="profile-image-glow"></div>
+              <div class="profile-image-frame">
+                <div class="profile-image" id="profileImage">
+                  <div class="profile-placeholder">
+                    <i class="fas fa-code"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="floating-badge badge-1">
+                <i class="fab fa-react"></i>
+                <div class="badge-content">
+                  <span class="badge-title">React</span>
+                  <span class="badge-libs">Hooks, Next.js, Redux</span>
+                </div>
+              </div>
+              <div class="floating-badge badge-2">
+                <i class="fab fa-node-js"></i>
+                <div class="badge-content">
+                  <span class="badge-title">Node.js</span>
+                  <span class="badge-libs">Express, Fastify, Prisma</span>
+                </div>
+              </div>
+              <div class="floating-badge badge-3">
+                <i class="fab fa-wordpress-simple"></i>
+                <div class="badge-content">
+                  <span class="badge-title">WordPress</span>
+                  <span class="badge-libs">WooCommerce, ACF, WPML</span>
+                </div>
+              </div>
+              <div class="floating-badge badge-4">
+                <i class="fas fa-shopping-cart"></i>
+                <div class="badge-content">
+                  <span class="badge-title">WooCommerce</span>
+                  <span class="badge-libs"
+                    >Checkout, Subscriptions, Multilingual</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-indicator">
+          <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
+          </div>
+          <span
+            class="scroll-text"
+            data-text-en="Scroll Down"
+            data-text-sk="Posuň sa nižšie"
+            >Scroll Down</span
+          >
+        </div>
+      </section>
 
-        <section id="about" class="section about-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-number">01</span>
-                    <h2 class="section-title">
-                        <span class="title-bracket">&lt;</span>
-                        <span class="title-text" data-text-en="About Me" data-text-sk="O mne">About Me</span>
-                        <span class="title-bracket">/&gt;</span>
-                    </h2>
-                    <div class="section-line"></div>
+      <section id="about" class="section about-section">
+        <div class="section-container">
+          <div class="section-header">
+            <span class="section-number">01</span>
+            <h2 class="section-title">
+              <span class="title-bracket">&lt;</span>
+              <span
+                class="title-text"
+                data-text-en="About Me"
+                data-text-sk="O mne"
+                >About Me</span
+              >
+              <span class="title-bracket">/&gt;</span>
+            </h2>
+            <div class="section-line"></div>
+          </div>
+          <div class="about-content">
+            <div class="about-text-wrapper">
+              <div class="about-intro">
+                <p
+                  class="about-text"
+                  data-text-en="I'm Andrej Andrašik, a Bratislava-based frontend developer with 4 years of building WordPress sites, e-shops and custom React frontends. I balance clean UX with maintainable code."
+                  data-text-sk="Som Andrej Andrašik, frontend vývojár z Bratislavy so 4 rokmi tvorby WordPress webov, e-shopov a custom React frontendov. Spájam čisté UX s udržiavateľným kódom."
+                >
+                  I'm Andrej Andrašik, a Bratislava-based frontend developer
+                  with 4 years of building WordPress sites, e-shops and custom
+                  React frontends. I balance clean UX with maintainable code.
+                </p>
+              </div>
+              <div class="about-stats">
+                <div class="stat-item">
+                  <div class="stat-number" data-count="35">0</div>
+                  <div
+                    class="stat-label"
+                    data-text-en="Projects"
+                    data-text-sk="Projekty"
+                  >
+                    Projects
+                  </div>
                 </div>
-                <div class="about-content">
-                    <div class="about-text-wrapper">
-                        <div class="about-intro">
-                            <p class="about-text" data-text-en="I'm Andrej Andrašik, a Bratislava-based frontend developer with 4 years of building WordPress sites, e-shops and custom React frontends. I balance clean UX with maintainable code." data-text-sk="Som Andrej Andrašik, frontend vývojár z Bratislavy so 4 rokmi tvorby WordPress webov, e-shopov a custom React frontendov. Spájam čisté UX s udržiavateľným kódom.">
-                                I'm Andrej Andrašik, a Bratislava-based frontend developer with 4 years of building WordPress sites, e-shops and custom React frontends. I balance clean UX with maintainable code.
-                            </p>
-                        </div>
-                        <div class="about-stats">
-                            <div class="stat-item">
-                                <div class="stat-number" data-count="35">0</div>
-                                <div class="stat-label" data-text-en="Projects" data-text-sk="Projekty">Projects</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" data-count="4">0</div>
-                                <div class="stat-label" data-text-en="Years Experience" data-text-sk="Roky praxe">Years Experience</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" data-count="18">0</div>
-                                <div class="stat-label" data-text-en="Happy Clients" data-text-sk="Spokojní klienti">Happy Clients</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="about-image-wrapper">
-                        <div class="about-image-container">
-                            <div class="code-block">
-                                <div class="code-line">
-                                    <span class="code-keyword">const</span>
-                                    <span class="code-variable">andrej</span>
-                                    <span class="code-operator">=</span>
-                                    <span class="code-brace">{</span>
-                                </div>
-                                <div class="code-line indent">
-                                    <span class="code-property">name</span>
-                                    <span class="code-operator">:</span>
-                                    <span class="code-string">'Andrej Andrašik'</span>
-                                    <span class="code-comma">,</span>
-                                </div>
-                                <div class="code-line indent">
-                                    <span class="code-property">stack</span>
-                                    <span class="code-operator">:</span>
-                                    <span class="code-bracket">[</span>
-                                    <span class="code-string">'WordPress'</span>
-                                    <span class="code-comma">,</span>
-                                    <span class="code-string">'React'</span>
-                                    <span class="code-comma">,</span>
-                                    <span class="code-string">'Next.js'</span>
-                                    <span class="code-bracket">]</span>
-                                    <span class="code-comma">,</span>
-                                </div>
-                                <div class="code-line indent">
-                                    <span class="code-property">focus</span>
-                                    <span class="code-operator">:</span>
-                                    <span class="code-string">'Product UX & DX'</span>
-                                </div>
-                                <div class="code-line">
-                                    <span class="code-brace">}</span>
-                                    <span class="code-semicolon">;</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="stat-item">
+                  <div class="stat-number" data-count="4">0</div>
+                  <div
+                    class="stat-label"
+                    data-text-en="Years Experience"
+                    data-text-sk="Roky praxe"
+                  >
+                    Years Experience
+                  </div>
                 </div>
+                <div class="stat-item">
+                  <div class="stat-number" data-count="18">0</div>
+                  <div
+                    class="stat-label"
+                    data-text-en="Happy Clients"
+                    data-text-sk="Spokojní klienti"
+                  >
+                    Happy Clients
+                  </div>
+                </div>
+              </div>
             </div>
-        </section>
+            <div class="about-image-wrapper">
+              <div class="about-image-container">
+                <div class="code-block">
+                  <div class="code-line">
+                    <span class="code-keyword">const</span>
+                    <span class="code-variable">andrej</span>
+                    <span class="code-operator">=</span>
+                    <span class="code-brace">{</span>
+                  </div>
+                  <div class="code-line indent">
+                    <span class="code-property">name</span>
+                    <span class="code-operator">:</span>
+                    <span class="code-string">'Andrej Andrašik'</span>
+                    <span class="code-comma">,</span>
+                  </div>
+                  <div class="code-line indent">
+                    <span class="code-property">stack</span>
+                    <span class="code-operator">:</span>
+                    <span class="code-bracket">[</span>
+                    <span class="code-string">'WordPress'</span>
+                    <span class="code-comma">,</span>
+                    <span class="code-string">'React'</span>
+                    <span class="code-comma">,</span>
+                    <span class="code-string">'Next.js'</span>
+                    <span class="code-bracket">]</span>
+                    <span class="code-comma">,</span>
+                  </div>
+                  <div class="code-line indent">
+                    <span class="code-property">focus</span>
+                    <span class="code-operator">:</span>
+                    <span class="code-string">'Product UX & DX'</span>
+                  </div>
+                  <div class="code-line">
+                    <span class="code-brace">}</span>
+                    <span class="code-semicolon">;</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <section id="skills" class="section skills-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-number">02</span>
-                    <h2 class="section-title">
-                        <span class="title-bracket">&lt;</span>
-                        <span class="title-text" data-text-en="Skills" data-text-sk="Zručnosti">Skills</span>
-                        <span class="title-bracket">/&gt;</span>
-                    </h2>
-                    <div class="section-line"></div>
+      <section id="skills" class="section skills-section">
+        <div class="section-container">
+          <div class="section-header">
+            <span class="section-number">02</span>
+            <h2 class="section-title">
+              <span class="title-bracket">&lt;</span>
+              <span
+                class="title-text"
+                data-text-en="Skills"
+                data-text-sk="Zručnosti"
+                >Skills</span
+              >
+              <span class="title-bracket">/&gt;</span>
+            </h2>
+            <div class="section-line"></div>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-category">
+              <h3
+                class="category-title"
+                data-text-en="Frontend"
+                data-text-sk="Frontend"
+              >
+                Frontend
+              </h3>
+              <div class="skill-items">
+                <div
+                  class="skill-item"
+                  data-skill="WordPress"
+                  data-percent="95"
+                >
+                  <div class="skill-header">
+                    <span class="skill-name">WordPress / WooCommerce</span>
+                    <span class="skill-percent">0%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress"></div>
+                  </div>
                 </div>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3 class="category-title" data-text-en="Frontend" data-text-sk="Frontend">Frontend</h3>
-                        <div class="skill-items">
-                            <div class="skill-item" data-skill="WordPress" data-percent="95">
-                                <div class="skill-header">
-                                    <span class="skill-name">WordPress / WooCommerce</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-progress"></div></div>
-                            </div>
-                            <div class="skill-item" data-skill="React" data-percent="92">
-                                <div class="skill-header">
-                                    <span class="skill-name">React, Next.js, Tailwind, JS/CSS/HTML</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-progress"></div></div>
-                            </div>
-                            <div class="skill-item" data-skill="UI" data-percent="88">
-                                <div class="skill-header">
-                                    <span class="skill-name">UI/UX Systems</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-progress"></div></div>
-                            </div>
-                            <div class="skill-item" data-skill="Testing" data-percent="82">
-                                <div class="skill-header">
-                                    <span class="skill-name">Testing (Jest, Playwright)</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-progress"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3 class="category-title" data-text-en="E-commerce & Marketing" data-text-sk="E-commerce & marketing">E-commerce & Marketing</h3>
-                        <div class="skill-items">
-                            <div class="skill-item" data-skill="SEO" data-percent="92">
-                                <div class="skill-header">
-                                    <span class="skill-name">SEO & Core Web Vitals</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-progress"></div></div>
-                            </div>
-                            <div class="skill-item" data-skill="CRO" data-percent="88">
-                                <div class="skill-header">
-                                    <span class="skill-name">CRO, funnels & A/B testing</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-progress"></div></div>
-                            </div>
-                            <div class="skill-item" data-skill="Analytics" data-percent="85">
-                                <div class="skill-header">
-                                    <span class="skill-name">GA4 / Tag Manager / Pixel</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-progress"></div></div>
-                            </div>
-                            <div class="skill-item" data-skill="Eshop" data-percent="84">
-                                <div class="skill-header">
-                                    <span class="skill-name">E-shop setup & payments</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-progress"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3 class="category-title" data-text-en="Tools & Ops" data-text-sk="Nástroje & Ops">Tools & Ops</h3>
-                        <div class="skill-items">
-                            <div class="skill-item" data-skill="Git" data-percent="95">
-                                <div class="skill-header">
-                                    <span class="skill-name">Git & CI/CD</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-progress"></div></div>
-                            </div>
-                            <div class="skill-item" data-skill="Firebase" data-percent="80">
-                                <div class="skill-header">
-                                    <span class="skill-name">Firebase / Supabase</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-progress"></div></div>
-                            </div>
-                            <div class="skill-item" data-skill="AI" data-percent="78">
-                                <div class="skill-header">
-                                    <span class="skill-name">AI tools & implementation</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-progress"></div></div>
-                            </div>
-                            <div class="skill-item" data-skill="Figma" data-percent="85">
-                                <div class="skill-header">
-                                    <span class="skill-name">Design Handoff (Figma)</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-progress"></div></div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="skill-item" data-skill="React" data-percent="92">
+                  <div class="skill-header">
+                    <span class="skill-name"
+                      >React, Next.js, Tailwind, JS/CSS/HTML</span
+                    >
+                    <span class="skill-percent">0%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress"></div>
+                  </div>
                 </div>
+                <div class="skill-item" data-skill="UI" data-percent="88">
+                  <div class="skill-header">
+                    <span class="skill-name">UI/UX Systems</span>
+                    <span class="skill-percent">0%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress"></div>
+                  </div>
+                </div>
+                <div class="skill-item" data-skill="Testing" data-percent="82">
+                  <div class="skill-header">
+                    <span class="skill-name">Testing (Jest, Playwright)</span>
+                    <span class="skill-percent">0%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress"></div>
+                  </div>
+                </div>
+              </div>
             </div>
-        </section>
+            <div class="skill-category">
+              <h3
+                class="category-title"
+                data-text-en="E-commerce & Marketing"
+                data-text-sk="E-commerce & marketing"
+              >
+                E-commerce & Marketing
+              </h3>
+              <div class="skill-items">
+                <div class="skill-item" data-skill="SEO" data-percent="92">
+                  <div class="skill-header">
+                    <span class="skill-name">SEO & Core Web Vitals</span>
+                    <span class="skill-percent">0%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress"></div>
+                  </div>
+                </div>
+                <div class="skill-item" data-skill="CRO" data-percent="88">
+                  <div class="skill-header">
+                    <span class="skill-name">CRO, funnels & A/B testing</span>
+                    <span class="skill-percent">0%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress"></div>
+                  </div>
+                </div>
+                <div
+                  class="skill-item"
+                  data-skill="Analytics"
+                  data-percent="85"
+                >
+                  <div class="skill-header">
+                    <span class="skill-name">GA4 / Tag Manager / Pixel</span>
+                    <span class="skill-percent">0%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress"></div>
+                  </div>
+                </div>
+                <div class="skill-item" data-skill="Eshop" data-percent="84">
+                  <div class="skill-header">
+                    <span class="skill-name">E-shop setup & payments</span>
+                    <span class="skill-percent">0%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="skill-category">
+              <h3
+                class="category-title"
+                data-text-en="Tools & Ops"
+                data-text-sk="Nástroje & Ops"
+              >
+                Tools & Ops
+              </h3>
+              <div class="skill-items">
+                <div class="skill-item" data-skill="Git" data-percent="95">
+                  <div class="skill-header">
+                    <span class="skill-name">Git & CI/CD</span>
+                    <span class="skill-percent">0%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress"></div>
+                  </div>
+                </div>
+                <div class="skill-item" data-skill="Firebase" data-percent="80">
+                  <div class="skill-header">
+                    <span class="skill-name">Firebase / Supabase</span>
+                    <span class="skill-percent">0%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress"></div>
+                  </div>
+                </div>
+                <div class="skill-item" data-skill="AI" data-percent="78">
+                  <div class="skill-header">
+                    <span class="skill-name">AI tools & implementation</span>
+                    <span class="skill-percent">0%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress"></div>
+                  </div>
+                </div>
+                <div class="skill-item" data-skill="Figma" data-percent="85">
+                  <div class="skill-header">
+                    <span class="skill-name">Design Handoff (Figma)</span>
+                    <span class="skill-percent">0%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <section id="experience" class="section experience-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-number">03</span>
-                    <h2 class="section-title">
-                        <span class="title-bracket">&lt;</span>
-                        <span class="title-text" data-text-en="Experience" data-text-sk="Skúsenosti">Experience</span>
-                        <span class="title-bracket">/&gt;</span>
-                    </h2>
-                    <div class="section-line"></div>
+      <section id="experience" class="section experience-section">
+        <div class="section-container">
+          <div class="section-header">
+            <span class="section-number">03</span>
+            <h2 class="section-title">
+              <span class="title-bracket">&lt;</span>
+              <span
+                class="title-text"
+                data-text-en="Experience"
+                data-text-sk="Skúsenosti"
+                >Experience</span
+              >
+              <span class="title-bracket">/&gt;</span>
+            </h2>
+            <div class="section-line"></div>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <div class="timeline-year">May 2024 - Present</div>
+                  <div class="timeline-badge">Current</div>
                 </div>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-header">
-                                <div class="timeline-year">May 2024 - Present</div>
-                                <div class="timeline-badge">Current</div>
-                            </div>
-                            <h3 class="timeline-title" data-text-en="Frontend Developer" data-text-sk="Frontend vývojár">Frontend Developer</h3>
-                            <div class="timeline-company"><i class="fas fa-building"></i> abcdesignsk · Contract · Bratislava (Hybrid)</div>
-                            <p class="timeline-description" data-text-en="Building WordPress sites and shops (Enfold + custom), handling quick content iterations, performance passes and client requests." data-text-sk="Staviam WordPress weby a e-shopy (Enfold + custom), robím rýchle úpravy obsahu, performance a požiadavky klientov.">
-                                Building WordPress sites and shops (Enfold + custom), handling quick content iterations, performance passes and client requests.
-                            </p>
-                            <div class="timeline-achievements">
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span data-text-en="Delivered marketing sites with Enfold" data-text-sk="Dodané marketingové weby s Enfoldom">Delivered marketing sites with Enfold</span></div>
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span data-text-en="Tuned Core Web Vitals for launches" data-text-sk="Doladené Core Web Vitals pri launchi">Tuned Core Web Vitals for launches</span></div>
-                            </div>
-                            <div class="timeline-tags">
-                                <span class="tag">WordPress</span><span class="tag">Enfold</span><span class="tag">WooCommerce</span><span class="tag">SEO</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-header">
-                                <div class="timeline-year">Oct 2023 - Present</div>
-                            </div>
-                            <h3 class="timeline-title" data-text-en="Frontend Engineer" data-text-sk="Frontend inžinier">Frontend Engineer</h3>
-                            <div class="timeline-company"><i class="fas fa-building"></i> International Scientific Conference CESGED · Remote</div>
-                            <p class="timeline-description" data-text-en="Member of the international board; maintain the conference WordPress site, sponsor pages and registration flows." data-text-sk="Člen medzinárodného boardu; spravujem konferenčný WordPress web, stránky sponzorov a registračné toky.">
-                                Member of the international board; maintain the conference WordPress site, sponsor pages and registration flows.
-                            </p>
-                            <div class="timeline-achievements">
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span data-text-en="Managed EN/SK content updates" data-text-sk="Správa EN/SK obsahových aktualizácií">Managed EN/SK content updates</span></div>
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span data-text-en="Built sponsor & speaker sections" data-text-sk="Vybudované sekcie sponzorov a speakrov">Built sponsor & speaker sections</span></div>
-                            </div>
-                            <div class="timeline-tags">
-                                <span class="tag">WordPress</span><span class="tag">Front-End</span><span class="tag">Conference</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-header">
-                                <div class="timeline-year">Oct 2022 - Present</div>
-                            </div>
-                            <h3 class="timeline-title" data-text-en="Frontend Developer" data-text-sk="Frontend vývojár">Frontend Developer</h3>
-                            <div class="timeline-company"><i class="fas fa-building"></i> Self-employed · Remote</div>
-                            <p class="timeline-description" data-text-en="Freelance frontend for marketing sites and custom components; WordPress builds plus React widgets when needed." data-text-sk="Freelance frontend na marketingové weby a custom komponenty; WordPress stavby a React widgety podľa potreby.">
-                                Freelance frontend for marketing sites and custom components; WordPress builds plus React widgets when needed.
-                            </p>
-                            <div class="timeline-achievements">
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span data-text-en="Improved and shipped dozens of client sites/apps" data-text-sk="Vylepšil a doručil desiatky klientskych webov/appiek">Improved and shipped dozens of client sites/apps</span></div>
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span data-text-en="Implemented payments, forms, and custom tweaks" data-text-sk="Implementované platby, formuláre a custom úpravy">Implemented payments, forms, and custom tweaks</span></div>
-                            </div>
-                            <div class="timeline-tags">
-                                <span class="tag">WordPress</span><span class="tag">React</span><span class="tag">HTML</span><span class="tag">CSS</span>
-                            </div>
-                        </div>
-                    </div>
+                <h3
+                  class="timeline-title"
+                  data-text-en="Frontend Developer"
+                  data-text-sk="Frontend vývojár"
+                >
+                  Frontend Developer
+                </h3>
+                <div class="timeline-company">
+                  <i class="fas fa-building"></i> abcdesignsk · Contract ·
+                  Bratislava (Hybrid)
                 </div>
+                <p
+                  class="timeline-description"
+                  data-text-en="Building WordPress sites and shops (Enfold + custom), handling quick content iterations, performance passes and client requests."
+                  data-text-sk="Staviam WordPress weby a e-shopy (Enfold + custom), robím rýchle úpravy obsahu, performance a požiadavky klientov."
+                >
+                  Building WordPress sites and shops (Enfold + custom), handling
+                  quick content iterations, performance passes and client
+                  requests.
+                </p>
+                <div class="timeline-achievements">
+                  <div class="achievement-item">
+                    <i class="fas fa-check-circle"></i
+                    ><span
+                      data-text-en="Delivered marketing sites with Enfold"
+                      data-text-sk="Dodané marketingové weby s Enfoldom"
+                      >Delivered marketing sites with Enfold</span
+                    >
+                  </div>
+                  <div class="achievement-item">
+                    <i class="fas fa-check-circle"></i
+                    ><span
+                      data-text-en="Tuned Core Web Vitals for launches"
+                      data-text-sk="Doladené Core Web Vitals pri launchi"
+                      >Tuned Core Web Vitals for launches</span
+                    >
+                  </div>
+                </div>
+                <div class="timeline-tags">
+                  <span class="tag">WordPress</span
+                  ><span class="tag">Enfold</span
+                  ><span class="tag">WooCommerce</span
+                  ><span class="tag">SEO</span>
+                </div>
+              </div>
             </div>
-        </section>
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <div class="timeline-year">Oct 2023 - Present</div>
+                </div>
+                <h3
+                  class="timeline-title"
+                  data-text-en="Frontend Engineer"
+                  data-text-sk="Frontend inžinier"
+                >
+                  Frontend Engineer
+                </h3>
+                <div class="timeline-company">
+                  <i class="fas fa-building"></i> International Scientific
+                  Conference CESGED · Remote
+                </div>
+                <p
+                  class="timeline-description"
+                  data-text-en="Member of the international board; maintain the conference WordPress site, sponsor pages and registration flows."
+                  data-text-sk="Člen medzinárodného boardu; spravujem konferenčný WordPress web, stránky sponzorov a registračné toky."
+                >
+                  Member of the international board; maintain the conference
+                  WordPress site, sponsor pages and registration flows.
+                </p>
+                <div class="timeline-achievements">
+                  <div class="achievement-item">
+                    <i class="fas fa-check-circle"></i
+                    ><span
+                      data-text-en="Managed EN/SK content updates"
+                      data-text-sk="Správa EN/SK obsahových aktualizácií"
+                      >Managed EN/SK content updates</span
+                    >
+                  </div>
+                  <div class="achievement-item">
+                    <i class="fas fa-check-circle"></i
+                    ><span
+                      data-text-en="Built sponsor & speaker sections"
+                      data-text-sk="Vybudované sekcie sponzorov a speakrov"
+                      >Built sponsor & speaker sections</span
+                    >
+                  </div>
+                </div>
+                <div class="timeline-tags">
+                  <span class="tag">WordPress</span
+                  ><span class="tag">Front-End</span
+                  ><span class="tag">Conference</span>
+                </div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <div class="timeline-year">Oct 2022 - Present</div>
+                </div>
+                <h3
+                  class="timeline-title"
+                  data-text-en="Frontend Developer"
+                  data-text-sk="Frontend vývojár"
+                >
+                  Frontend Developer
+                </h3>
+                <div class="timeline-company">
+                  <i class="fas fa-building"></i> Self-employed · Remote
+                </div>
+                <p
+                  class="timeline-description"
+                  data-text-en="Freelance frontend for marketing sites and custom components; WordPress builds plus React widgets when needed."
+                  data-text-sk="Freelance frontend na marketingové weby a custom komponenty; WordPress stavby a React widgety podľa potreby."
+                >
+                  Freelance frontend for marketing sites and custom components;
+                  WordPress builds plus React widgets when needed.
+                </p>
+                <div class="timeline-achievements">
+                  <div class="achievement-item">
+                    <i class="fas fa-check-circle"></i
+                    ><span
+                      data-text-en="Improved and shipped dozens of client sites/apps"
+                      data-text-sk="Vylepšil a doručil desiatky klientskych webov/appiek"
+                      >Improved and shipped dozens of client sites/apps</span
+                    >
+                  </div>
+                  <div class="achievement-item">
+                    <i class="fas fa-check-circle"></i
+                    ><span
+                      data-text-en="Implemented payments, forms, and custom tweaks"
+                      data-text-sk="Implementované platby, formuláre a custom úpravy"
+                      >Implemented payments, forms, and custom tweaks</span
+                    >
+                  </div>
+                </div>
+                <div class="timeline-tags">
+                  <span class="tag">WordPress</span
+                  ><span class="tag">React</span><span class="tag">HTML</span
+                  ><span class="tag">CSS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <section id="projects" class="section projects-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-number">04</span>
-                    <h2 class="section-title">
-                        <span class="title-bracket">&lt;</span>
-                        <span class="title-text" data-text-en="Projects" data-text-sk="Projekty">Projects</span>
-                        <span class="title-bracket">/&gt;</span>
-                    </h2>
-                    <div class="section-line"></div>
-                </div>
-                <div class="projects-grid">
-                    <a class="project-card-link" href="https://www.autolamac.sk/" target="_blank" rel="noopener noreferrer">
-                        <div class="project-card">
-                            <div class="project-image">
-                                <div class="project-overlay">
-                                    <div class="project-links">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </div>
-                                </div>
-                                <div class="project-placeholder"><i class="fas fa-car"></i></div>
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title" data-text-en="Auto Lamač – Škoda Dealer Site" data-text-sk="Auto Lamač – stránka pre Škoda dealerstvo">Auto Lamač – Škoda Dealer Site</h3>
-                                <p class="project-description" data-text-en="WordPress build that pulls stock and used cars from external APIs, keeps listings synced, and routes leads to test-drive and service forms." data-text-sk="WordPress riešenie, ktoré ťahá skladové a jazdené autá z externých API, udržiava ponuku v synchronizácii a smeruje leady do formulárov testovacích jázd a servisu.">
-                                    WordPress build that pulls stock and used cars from external APIs, keeps listings synced, and routes leads to test-drive and service forms.
-                                </p>
-                                <div class="project-tags"><span class="tag">WordPress</span><span class="tag">API</span><span class="tag">Dealer</span></div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="project-card-link" href="https://www.herz.sk/" target="_blank" rel="noopener noreferrer">
-                        <div class="project-card">
-                            <div class="project-image">
-                                <div class="project-overlay">
-                                    <div class="project-links">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </div>
-                                </div>
-                                <div class="project-placeholder"><i class="fas fa-warehouse"></i></div>
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title" data-text-en="HERZ Slovakia – B2B Stocked Catalog" data-text-sk="HERZ Slovensko – B2B skladový katalóg">HERZ Slovakia – B2B Stocked Catalog</h3>
-                                <p class="project-description" data-text-en="WooCommerce store for HERZ SK; stock refreshes hourly from the warehouse feed for accurate availability." data-text-sk="WooCommerce obchod pre HERZ SK; stav zásob sa obnovuje každú hodinu zo skladového feedu pre presnú dostupnosť.">
-                                    WooCommerce store for HERZ SK; stock refreshes hourly from the warehouse feed for accurate availability.
-                                </p>
-                                <div class="project-tags"><span class="tag">WooCommerce</span><span class="tag">WordPress</span><span class="tag">Stock Sync</span></div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="project-card-link" href="https://www.mypet.sk/" target="_blank" rel="noopener noreferrer">
-                        <div class="project-card">
-                            <div class="project-image">
-                                <div class="project-overlay">
-                                    <div class="project-links">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </div>
-                                </div>
-                                <div class="project-placeholder"><i class="fas fa-paw"></i></div>
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title" data-text-en="MyPet – Veterinary Clinic Bratislava" data-text-sk="MyPet – veterinárna klinika Bratislava">MyPet – Veterinary Clinic Bratislava</h3>
-                                <p class="project-description" data-text-en="WordPress site for a Bratislava vet clinic: services, vets, pricing, and appointment leads routed to the clinic team." data-text-sk="WordPress web pre bratislavskú vet kliniku: služby, tím, cenník a leady na objednanie priamo k lekárom.">
-                                    WordPress site for a Bratislava vet clinic: services, vets, pricing, and appointment leads routed to the clinic team.
-                                </p>
-                                <div class="project-tags"><span class="tag">WordPress</span><span class="tag">Clinic</span><span class="tag">Leads</span></div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="project-card-link" href="https://www.medaco.sk/" target="_blank" rel="noopener noreferrer">
-                        <div class="project-card">
-                            <div class="project-image">
-                                <div class="project-overlay">
-                                    <div class="project-links">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </div>
-                                </div>
-                                <div class="project-placeholder"><i class="fas fa-prescription-bottle-medical"></i></div>
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title" data-text-en="Medaco – Pharmacy E-shop" data-text-sk="Medaco – lekárenský e-shop">Medaco – Pharmacy E-shop</h3>
-                                <p class="project-description" data-text-en="WooCommerce pharmacy shop with skin-care focus (Naftalan), blog, and HomeDelivery program; built for a Bratislava brick-and-mortar pharmacy." data-text-sk="WooCommerce e-shop lekárne so zameraním na starostlivosť o pokožku (Naftalan), blog a HomeDelivery program pre bratislavskú kamennú lekáreň.">
-                                    WooCommerce pharmacy shop with skin-care focus (Naftalan), blog, and HomeDelivery program; built for a Bratislava brick-and-mortar pharmacy.
-                                </p>
-                                <div class="project-tags"><span class="tag">WooCommerce</span><span class="tag">WordPress</span><span class="tag">Pharmacy</span></div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="project-card-link" href="https://nastroje-ai.sk/" target="_blank" rel="noopener noreferrer">
-                        <div class="project-card">
-                            <div class="project-image">
-                                <div class="project-overlay">
-                                    <div class="project-links">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </div>
-                                </div>
-                                <div class="project-placeholder"><i class="fas fa-robot"></i></div>
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title" data-text-en="Nastroje-AI – Guide to AI Tools" data-text-sk="Nastroje-AI – sprievodca AI nástrojmi">Nastroje-AI – Guide to AI Tools</h3>
-                                <p class="project-description" data-text-en="Content-rich WordPress site with FAQs, blog, and lead capture ebook to help users pick AI tools and workflows." data-text-sk="Obsahový WordPress web s FAQ, blogom a e-book lead capture, ktorý pomáha používateľom vybrať si AI nástroje a workflowy.">
-                                    Content-rich WordPress site with FAQs, blog, and lead capture ebook to help users pick AI tools and workflows.
-                                </p>
-                                <div class="project-tags"><span class="tag">WordPress</span><span class="tag">AI</span><span class="tag">Content</span></div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="project-card-link" href="https://www.bez.sk/" target="_blank" rel="noopener noreferrer">
-                        <div class="project-card">
-                            <div class="project-image">
-                                <div class="project-overlay">
-                                    <div class="project-links">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </div>
-                                </div>
-                                <div class="project-placeholder"><i class="fas fa-bolt"></i></div>
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title" data-text-en="BEZ Transformátory – Manufacturer Site" data-text-sk="BEZ Transformátory – výrobný web">BEZ Transformátory – Manufacturer Site</h3>
-                                <p class="project-description" data-text-en="Corporate WordPress for Slovakia’s transformer producer: product lines, stocked units, certifications, references, and inquiry forms across languages." data-text-sk="Firemný WordPress pre výrobcu transformátorov na Slovensku: produktové rady, skladové kusy, certifikácie, referencie a dopytové formuláre vo viacerých jazykoch.">
-                                    Corporate WordPress for Slovakia’s transformer producer: product lines, stocked units, certifications, references, and inquiry forms across languages.
-                                </p>
-                                <div class="project-tags"><span class="tag">WordPress</span><span class="tag">B2B</span><span class="tag">Manufacturing</span></div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="project-card-link" href="https://www.4sportsmedia.sk/" target="_blank" rel="noopener noreferrer">
-                        <div class="project-card">
-                            <div class="project-image">
-                                <div class="project-overlay">
-                                    <div class="project-links">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </div>
-                                </div>
-                                <div class="project-placeholder"><i class="fas fa-futbol"></i></div>
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title" data-text-en="4SportsMedia – Sports Marketing Site" data-text-sk="4SportsMedia – web športového marketingu">4SportsMedia – Sports Marketing Site</h3>
-                                <p class="project-description" data-text-en="WordPress refresh for a sports media agency; rebuilt content and translations with WPML for SK/EN audiences." data-text-sk="WordPress úpravy pre športovo-mediálnu agentúru; prekopaný obsah a preklady cez WPML pre SK/EN publikum.">
-                                    WordPress refresh for a sports media agency; rebuilt content and translations with WPML for SK/EN audiences.
-                                </p>
-                                <div class="project-tags"><span class="tag">WordPress</span><span class="tag">WPML</span><span class="tag">Sports</span></div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="project-card-link" href="https://www.medacoplus.sk/" target="_blank" rel="noopener noreferrer">
-                        <div class="project-card">
-                            <div class="project-image">
-                                <div class="project-overlay">
-                                    <div class="project-links">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </div>
-                                </div>
-                                <div class="project-placeholder"><i class="fas fa-heartbeat"></i></div>
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title" data-text-en="MedacoPlus – Healthcare Solutions" data-text-sk="MedacoPlus – zdravotnícke riešenia">MedacoPlus – Healthcare Solutions</h3>
-                                <p class="project-description" data-text-en="WordPress site for Medaco’s healthcare solutions arm, presenting medical products, partner info, and inquiry flows." data-text-sk="WordPress web pre zdravotnícke riešenia MedacoPlus, prezentuje produkty, partnerov a dopytové formuláre.">
-                                    WordPress site for Medaco’s healthcare solutions arm, presenting medical products, partner info, and inquiry flows.
-                                </p>
-                                <div class="project-tags"><span class="tag">WordPress</span><span class="tag">Healthcare</span><span class="tag">B2B</span></div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="project-card-link" href="https://cesged.com/" target="_blank" rel="noopener noreferrer">
-                        <div class="project-card">
-                            <div class="project-image">
-                                <div class="project-overlay">
-                                    <div class="project-links">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </div>
-                                </div>
-                                <div class="project-placeholder"><i class="fas fa-graduation-cap"></i></div>
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title" data-text-en="CESGED – Conference Site" data-text-sk="CESGED – konferenčný web">CESGED – Conference Site</h3>
-                                <p class="project-description" data-text-en="International conference site with schedules, speakers, and multilingual content for attendees and partners." data-text-sk="Medzinárodný konferenčný web s programom, speakrami a viacjazyčným obsahom pre účastníkov a partnerov.">
-                                    International conference site with schedules, speakers, and multilingual content for attendees and partners.
-                                </p>
-                                <div class="project-tags"><span class="tag">WordPress</span><span class="tag">Conference</span><span class="tag">Multilingual</span></div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section contact-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-number">05</span>
-                    <h2 class="section-title">
-                        <span class="title-bracket">&lt;</span>
-                        <span class="title-text" data-text-en="Contact" data-text-sk="Kontakt">Contact</span>
-                        <span class="title-bracket">/&gt;</span>
-                    </h2>
-                    <div class="section-line"></div>
-                </div>
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="contact-details">
-                                <h4 class="contact-label" data-text-en="Email" data-text-sk="Email">Email</h4>
-                                <a href="mailto:andrasik.andrej@gmail.com" class="contact-value">andrasik.andrej@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                            <div class="contact-details">
-                                <h4 class="contact-label" data-text-en="Phone" data-text-sk="Telefón">Phone</h4>
-                                <a href="tel:+421900000000" class="contact-value">+421 900 000 000</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="contact-details">
-                                <h4 class="contact-label" data-text-en="Location" data-text-sk="Lokácia">Location</h4>
-                                <span class="contact-value" data-text-en="Bratislava, Slovakia" data-text-sk="Bratislava, Slovensko">Bratislava, Slovakia</span>
-                            </div>
-                        </div>
+      <section id="projects" class="section projects-section">
+        <div class="section-container">
+          <div class="section-header">
+            <span class="section-number">04</span>
+            <h2 class="section-title">
+              <span class="title-bracket">&lt;</span>
+              <span
+                class="title-text"
+                data-text-en="Latest Projects"
+                data-text-sk="Najnovšie projekty"
+                >Latest Projects</span
+              >
+              <span class="title-bracket">/&gt;</span>
+            </h2>
+            <div class="section-line"></div>
+          </div>
+          <div class="projects-grid">
+            <a
+              class="project-card-link"
+              href="https://www.autolamac.sk/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="project-card">
+                <div class="project-image">
+                  <div class="project-overlay">
+                    <div class="project-links">
+                      <i class="fas fa-external-link-alt"></i>
                     </div>
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <input type="text" name="name" class="form-input" placeholder="Name" data-placeholder-en="Name" data-placeholder-sk="Meno" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" class="form-input" placeholder="Email" data-placeholder-en="Email" data-placeholder-sk="Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="subject" class="form-input" placeholder="Subject" data-placeholder-en="Subject" data-placeholder-sk="Predmet" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" class="form-input form-textarea" rows="5" placeholder="Message" data-placeholder-en="Message" data-placeholder-sk="Správa" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-submit">
-                            <span data-text-en="Send Message" data-text-sk="Odoslať správu">Send Message</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
+                  </div>
+                  <div class="project-placeholder">
+                    <i class="fas fa-car"></i>
+                  </div>
                 </div>
+                <div class="project-content">
+                  <h3
+                    class="project-title"
+                    data-text-en="Auto Lamač – Škoda Dealer Site"
+                    data-text-sk="Auto Lamač – stránka pre Škoda dealerstvo"
+                  >
+                    Auto Lamač – Škoda Dealer Site
+                  </h3>
+                  <p
+                    class="project-description"
+                    data-text-en="WordPress build that pulls stock and used cars from external APIs, keeps listings synced, and routes leads to test-drive and service forms."
+                    data-text-sk="WordPress riešenie, ktoré ťahá skladové a jazdené autá z externých API, udržiava ponuku v synchronizácii a smeruje leady do formulárov testovacích jázd a servisu."
+                  >
+                    WordPress build that pulls stock and used cars from external
+                    APIs, keeps listings synced, and routes leads to test-drive
+                    and service forms.
+                  </p>
+                  <div class="project-tags">
+                    <span class="tag">WordPress</span
+                    ><span class="tag">API</span><span class="tag">Dealer</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              class="project-card-link"
+              href="https://www.herz.sk/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="project-card">
+                <div class="project-image">
+                  <div class="project-overlay">
+                    <div class="project-links">
+                      <i class="fas fa-external-link-alt"></i>
+                    </div>
+                  </div>
+                  <div class="project-placeholder">
+                    <i class="fas fa-warehouse"></i>
+                  </div>
+                </div>
+                <div class="project-content">
+                  <h3
+                    class="project-title"
+                    data-text-en="HERZ Slovakia – B2B Stocked Catalog"
+                    data-text-sk="HERZ Slovensko – B2B skladový katalóg"
+                  >
+                    HERZ Slovakia – B2B Stocked Catalog
+                  </h3>
+                  <p
+                    class="project-description"
+                    data-text-en="WooCommerce store for HERZ SK; stock refreshes hourly from the warehouse feed for accurate availability."
+                    data-text-sk="WooCommerce obchod pre HERZ SK; stav zásob sa obnovuje každú hodinu zo skladového feedu pre presnú dostupnosť."
+                  >
+                    WooCommerce store for HERZ SK; stock refreshes hourly from
+                    the warehouse feed for accurate availability.
+                  </p>
+                  <div class="project-tags">
+                    <span class="tag">WooCommerce</span
+                    ><span class="tag">WordPress</span
+                    ><span class="tag">Stock Sync</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              class="project-card-link"
+              href="https://www.mypet.sk/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="project-card">
+                <div class="project-image">
+                  <div class="project-overlay">
+                    <div class="project-links">
+                      <i class="fas fa-external-link-alt"></i>
+                    </div>
+                  </div>
+                  <div class="project-placeholder">
+                    <i class="fas fa-paw"></i>
+                  </div>
+                </div>
+                <div class="project-content">
+                  <h3
+                    class="project-title"
+                    data-text-en="MyPet – Veterinary Clinic Bratislava"
+                    data-text-sk="MyPet – veterinárna klinika Bratislava"
+                  >
+                    MyPet – Veterinary Clinic Bratislava
+                  </h3>
+                  <p
+                    class="project-description"
+                    data-text-en="WordPress site for a Bratislava vet clinic: services, vets, pricing, and appointment leads routed to the clinic team."
+                    data-text-sk="WordPress web pre bratislavskú vet kliniku: služby, tím, cenník a leady na objednanie priamo k lekárom."
+                  >
+                    WordPress site for a Bratislava vet clinic: services, vets,
+                    pricing, and appointment leads routed to the clinic team.
+                  </p>
+                  <div class="project-tags">
+                    <span class="tag">WordPress</span
+                    ><span class="tag">Clinic</span
+                    ><span class="tag">Leads</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              class="project-card-link"
+              href="https://www.medaco.sk/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="project-card">
+                <div class="project-image">
+                  <div class="project-overlay">
+                    <div class="project-links">
+                      <i class="fas fa-external-link-alt"></i>
+                    </div>
+                  </div>
+                  <div class="project-placeholder">
+                    <i class="fas fa-prescription-bottle-medical"></i>
+                  </div>
+                </div>
+                <div class="project-content">
+                  <h3
+                    class="project-title"
+                    data-text-en="Medaco – Pharmacy E-shop"
+                    data-text-sk="Medaco – lekárenský e-shop"
+                  >
+                    Medaco – Pharmacy E-shop
+                  </h3>
+                  <p
+                    class="project-description"
+                    data-text-en="WooCommerce pharmacy shop with skin-care focus (Naftalan), blog, and HomeDelivery program; built for a Bratislava brick-and-mortar pharmacy."
+                    data-text-sk="WooCommerce e-shop lekárne so zameraním na starostlivosť o pokožku (Naftalan), blog a HomeDelivery program pre bratislavskú kamennú lekáreň."
+                  >
+                    WooCommerce pharmacy shop with skin-care focus (Naftalan),
+                    blog, and HomeDelivery program; built for a Bratislava
+                    brick-and-mortar pharmacy.
+                  </p>
+                  <div class="project-tags">
+                    <span class="tag">WooCommerce</span
+                    ><span class="tag">WordPress</span
+                    ><span class="tag">Pharmacy</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              class="project-card-link"
+              href="https://nastroje-ai.sk/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="project-card">
+                <div class="project-image">
+                  <div class="project-overlay">
+                    <div class="project-links">
+                      <i class="fas fa-external-link-alt"></i>
+                    </div>
+                  </div>
+                  <div class="project-placeholder">
+                    <i class="fas fa-robot"></i>
+                  </div>
+                </div>
+                <div class="project-content">
+                  <h3
+                    class="project-title"
+                    data-text-en="Nastroje-AI – Guide to AI Tools"
+                    data-text-sk="Nastroje-AI – sprievodca AI nástrojmi"
+                  >
+                    Nastroje-AI – Guide to AI Tools
+                  </h3>
+                  <p
+                    class="project-description"
+                    data-text-en="Content-rich WordPress site with FAQs, blog, and lead capture ebook to help users pick AI tools and workflows."
+                    data-text-sk="Obsahový WordPress web s FAQ, blogom a e-book lead capture, ktorý pomáha používateľom vybrať si AI nástroje a workflowy."
+                  >
+                    Content-rich WordPress site with FAQs, blog, and lead
+                    capture ebook to help users pick AI tools and workflows.
+                  </p>
+                  <div class="project-tags">
+                    <span class="tag">WordPress</span><span class="tag">AI</span
+                    ><span class="tag">Content</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              class="project-card-link"
+              href="https://www.bez.sk/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="project-card">
+                <div class="project-image">
+                  <div class="project-overlay">
+                    <div class="project-links">
+                      <i class="fas fa-external-link-alt"></i>
+                    </div>
+                  </div>
+                  <div class="project-placeholder">
+                    <i class="fas fa-bolt"></i>
+                  </div>
+                </div>
+                <div class="project-content">
+                  <h3
+                    class="project-title"
+                    data-text-en="BEZ Transformátory – Manufacturer Site"
+                    data-text-sk="BEZ Transformátory – výrobný web"
+                  >
+                    BEZ Transformátory – Manufacturer Site
+                  </h3>
+                  <p
+                    class="project-description"
+                    data-text-en="Corporate WordPress for Slovakia’s transformer producer: product lines, stocked units, certifications, references, and inquiry forms across languages."
+                    data-text-sk="Firemný WordPress pre výrobcu transformátorov na Slovensku: produktové rady, skladové kusy, certifikácie, referencie a dopytové formuláre vo viacerých jazykoch."
+                  >
+                    Corporate WordPress for Slovakia’s transformer producer:
+                    product lines, stocked units, certifications, references,
+                    and inquiry forms across languages.
+                  </p>
+                  <div class="project-tags">
+                    <span class="tag">WordPress</span
+                    ><span class="tag">B2B</span
+                    ><span class="tag">Manufacturing</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              class="project-card-link"
+              href="https://www.4sportsmedia.sk/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="project-card">
+                <div class="project-image">
+                  <div class="project-overlay">
+                    <div class="project-links">
+                      <i class="fas fa-external-link-alt"></i>
+                    </div>
+                  </div>
+                  <div class="project-placeholder">
+                    <i class="fas fa-futbol"></i>
+                  </div>
+                </div>
+                <div class="project-content">
+                  <h3
+                    class="project-title"
+                    data-text-en="4SportsMedia – Sports Marketing Site"
+                    data-text-sk="4SportsMedia – web športového marketingu"
+                  >
+                    4SportsMedia – Sports Marketing Site
+                  </h3>
+                  <p
+                    class="project-description"
+                    data-text-en="WordPress refresh for a sports media agency; rebuilt content and translations with WPML for SK/EN audiences."
+                    data-text-sk="WordPress úpravy pre športovo-mediálnu agentúru; prekopaný obsah a preklady cez WPML pre SK/EN publikum."
+                  >
+                    WordPress refresh for a sports media agency; rebuilt content
+                    and translations with WPML for SK/EN audiences.
+                  </p>
+                  <div class="project-tags">
+                    <span class="tag">WordPress</span
+                    ><span class="tag">WPML</span
+                    ><span class="tag">Sports</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              class="project-card-link"
+              href="https://www.medacoplus.sk/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="project-card">
+                <div class="project-image">
+                  <div class="project-overlay">
+                    <div class="project-links">
+                      <i class="fas fa-external-link-alt"></i>
+                    </div>
+                  </div>
+                  <div class="project-placeholder">
+                    <i class="fas fa-heartbeat"></i>
+                  </div>
+                </div>
+                <div class="project-content">
+                  <h3
+                    class="project-title"
+                    data-text-en="MedacoPlus – Healthcare Solutions"
+                    data-text-sk="MedacoPlus – zdravotnícke riešenia"
+                  >
+                    MedacoPlus – Healthcare Solutions
+                  </h3>
+                  <p
+                    class="project-description"
+                    data-text-en="WordPress site for Medaco’s healthcare solutions arm, presenting medical products, partner info, and inquiry flows."
+                    data-text-sk="WordPress web pre zdravotnícke riešenia MedacoPlus, prezentuje produkty, partnerov a dopytové formuláre."
+                  >
+                    WordPress site for Medaco’s healthcare solutions arm,
+                    presenting medical products, partner info, and inquiry
+                    flows.
+                  </p>
+                  <div class="project-tags">
+                    <span class="tag">WordPress</span
+                    ><span class="tag">Healthcare</span
+                    ><span class="tag">B2B</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              class="project-card-link"
+              href="https://cesged.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="project-card">
+                <div class="project-image">
+                  <div class="project-overlay">
+                    <div class="project-links">
+                      <i class="fas fa-external-link-alt"></i>
+                    </div>
+                  </div>
+                  <div class="project-placeholder">
+                    <i class="fas fa-graduation-cap"></i>
+                  </div>
+                </div>
+                <div class="project-content">
+                  <h3
+                    class="project-title"
+                    data-text-en="CESGED – Conference Site"
+                    data-text-sk="CESGED – konferenčný web"
+                  >
+                    CESGED – Conference Site
+                  </h3>
+                  <p
+                    class="project-description"
+                    data-text-en="International conference site with schedules, speakers, and multilingual content for attendees and partners."
+                    data-text-sk="Medzinárodný konferenčný web s programom, speakrami a viacjazyčným obsahom pre účastníkov a partnerov."
+                  >
+                    International conference site with schedules, speakers, and
+                    multilingual content for attendees and partners.
+                  </p>
+                  <div class="project-tags">
+                    <span class="tag">WordPress</span
+                    ><span class="tag">Conference</span
+                    ><span class="tag">Multilingual</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact-section">
+        <div class="section-container">
+          <div class="section-header">
+            <span class="section-number">05</span>
+            <h2 class="section-title">
+              <span class="title-bracket">&lt;</span>
+              <span
+                class="title-text"
+                data-text-en="Contact"
+                data-text-sk="Kontakt"
+                >Contact</span
+              >
+              <span class="title-bracket">/&gt;</span>
+            </h2>
+            <div class="section-line"></div>
+          </div>
+          <div class="contact-content">
+            <div class="contact-info">
+              <div class="contact-item">
+                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                <div class="contact-details">
+                  <h4
+                    class="contact-label"
+                    data-text-en="Email"
+                    data-text-sk="Email"
+                  >
+                    Email
+                  </h4>
+                  <a
+                    href="mailto:andrasik.andrej@gmail.com"
+                    class="contact-value"
+                    >andrasik.andrej@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                <div class="contact-details">
+                  <h4
+                    class="contact-label"
+                    data-text-en="Phone"
+                    data-text-sk="Telefón"
+                  >
+                    Phone
+                  </h4>
+                  <a href="tel:+421900000000" class="contact-value"
+                    >+421 918 151 298</a
+                  >
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-details">
+                  <h4
+                    class="contact-label"
+                    data-text-en="Location"
+                    data-text-sk="Lokácia"
+                  >
+                    Location
+                  </h4>
+                  <span
+                    class="contact-value"
+                    data-text-en="Bratislava, Slovakia"
+                    data-text-sk="Bratislava, Slovensko"
+                    >Bratislava, Slovakia</span
+                  >
+                </div>
+              </div>
             </div>
-        </section>
+            <form
+              class="contact-form"
+              id="contactForm"
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+            >
+              <input type="hidden" name="form-name" value="contact" />
+              <div class="form-group hidden">
+                <input name="bot-field" />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="name"
+                  class="form-input"
+                  placeholder="Name"
+                  data-placeholder-en="Name"
+                  data-placeholder-sk="Meno"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="Email"
+                  data-placeholder-en="Email"
+                  data-placeholder-sk="Email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="subject"
+                  class="form-input"
+                  placeholder="Subject"
+                  data-placeholder-en="Subject"
+                  data-placeholder-sk="Predmet"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <textarea
+                  name="message"
+                  class="form-input form-textarea"
+                  rows="5"
+                  placeholder="Message"
+                  data-placeholder-en="Message"
+                  data-placeholder-sk="Správa"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-submit">
+                <span data-text-en="Send Message" data-text-sk="Odoslať správu"
+                  >Send Message</span
+                >
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-text-wrapper">
-                    <p class="footer-text">
-                        <span class="footer-copyright">© 2026 Andrej Andrašik</span>
-                        <span class="footer-divider">•</span>
-                        <span class="footer-built" data-text-en="Built with TypeScript, coffee, and curiosity" data-text-sk="Postavené s TypeScriptom, kávou a zvedavosťou">Built with TypeScript, coffee, and curiosity</span>
-                    </p>
-                    <p class="footer-author">
-                        <span class="footer-by-text" data-text-en="by" data-text-sk="od">by</span>
-                        <a href="https://www.linkedin.com/in/andrej-andra%C5%A1ik-542091aa/" target="_blank" rel="noopener noreferrer" class="footer-author-link">
-                            <i class="fas fa-code"></i>
-                            <span>Andrej</span>
-                        </a>
-                    </p>
-                </div>
-                <div class="footer-social">
-                    <a href="https://www.linkedin.com/in/andrej-andra%C5%A1ik-542091aa/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com/deboker" class="footer-social-link" title="GitHub" target="_blank" rel="noreferrer"><i class="fab fa-github"></i></a>
-                    <a href="https://x.com/AndrasikAndrej" class="footer-social-link" title="X" target="_blank" rel="noreferrer"><i class="fab fa-x-twitter"></i></a>
-                </div>
-            </div>
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-text-wrapper">
+            <p class="footer-text">
+              <span class="footer-copyright">© 2026 Andrej Andrašik</span>
+              <span class="footer-divider">•</span>
+              <span
+                class="footer-built"
+                data-text-en="Built with TypeScript, coffee, and curiosity"
+                data-text-sk="Postavené s TypeScriptom, kávou a zvedavosťou"
+                >Built with TypeScript, coffee, and curiosity</span
+              >
+            </p>
+            <p class="footer-author">
+              <span class="footer-by-text" data-text-en="by" data-text-sk="od"
+                >by</span
+              >
+              <a
+                href="https://www.linkedin.com/in/andrej-andra%C5%A1ik-542091aa/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer-author-link"
+              >
+                <i class="fas fa-code"></i>
+                <span>Andrej</span>
+              </a>
+            </p>
+          </div>
+          <div class="footer-social">
+            <a
+              href="https://www.linkedin.com/in/andrej-andra%C5%A1ik-542091aa/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-social-link"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a
+              href="https://github.com/deboker"
+              class="footer-social-link"
+              title="GitHub"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              href="https://x.com/AndrasikAndrej"
+              class="footer-social-link"
+              title="X"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fab fa-x-twitter"></i
+            ></a>
+          </div>
         </div>
+      </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/main.js"></script>
-</body>
+  </body>
 </html>

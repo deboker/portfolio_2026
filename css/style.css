@@ -678,9 +678,9 @@ img {
   animation-delay: 0s;
 }
 .badge-0 {
-  top: -5%;
+  top: -17%;
   left: 10%;
-  animation-delay: 0s;
+  animation-delay: 0.8s;
 }
 .badge-2 {
   bottom: 20%;
@@ -1093,7 +1093,7 @@ img {
   overflow: hidden;
   transition: all var(--transition-smooth);
   cursor: pointer;
-  }
+}
 .project-card-link {
   display: block;
   text-decoration: none;

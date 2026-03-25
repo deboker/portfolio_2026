@@ -677,6 +677,11 @@ img {
   right: -10%;
   animation-delay: 0s;
 }
+.badge-0 {
+  top: -5%;
+  left: 10%;
+  animation-delay: 0s;
+}
 .badge-2 {
   bottom: 20%;
   right: -15%;

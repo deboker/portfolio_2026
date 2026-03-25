@@ -29,8 +29,8 @@
   --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --font-primary: "Tajawal", sans-serif;
-  --font-code: "Fira Code", monospace;
+  --font-primary: "Inter", "Fira Code", system-ui, -apple-system, sans-serif;
+  --font-code: "Fira Code", "Inter", monospace;
 }
 
 [data-theme="light"] {

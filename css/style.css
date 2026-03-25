@@ -1649,9 +1649,6 @@ img {
   .scroll-indicator {
     bottom: 1rem;
   }
-  .badge-content {
-    display: none;
-  }
   .floating-badge {
     min-width: auto;
     padding: 0.8rem 1rem;
@@ -1661,6 +1658,12 @@ img {
   }
   .badge-0 {
     top: -12px;
+  }
+}
+
+@media (max-width: 767px) {
+  .badge-content {
+    display: none;
   }
 }
 

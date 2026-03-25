@@ -693,9 +693,14 @@ img {
   animation-delay: 2s;
 }
 .badge-4 {
+  top: 60%;
+  right: 0%;
+  animation-delay: 2.5s;
+}
+.badge-5 {
   bottom: 5%;
   left: -20%;
-  animation-delay: 2.5s;
+  animation-delay: 3s;
 }
 @keyframes floatBadge {
   0%,

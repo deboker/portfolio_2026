@@ -1842,6 +1842,9 @@ img {
   .loader-progress-wrapper {
     width: 180px;
   }
+  .badge-content {
+    display: none;
+  }
 }
 
 @media (max-width: 360px) {

@@ -15,6 +15,8 @@ function initializeApp() {
     initLanguage();
     initTheme();
     initNavigation();
+    initScrollProgress();
+    initTimelineProgress();
     initScrollEffects();
     initFormHandlers();
     initMobileMenu();
@@ -194,6 +196,47 @@ function updateHeaderOnScroll() {
     }
 }
 
+function initScrollProgress() {
+    const header = document.querySelector('.main-header');
+    if (!header) return;
+
+    function updateScrollProgress() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+        header.style.setProperty('--scroll-progress', `${scrollPercent}%`);
+    }
+
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    window.addEventListener('resize', updateScrollProgress);
+    updateScrollProgress();
+}
+
+function initTimelineProgress() {
+    const timeline = document.querySelector('.timeline');
+    if (!timeline) return;
+
+    function updateTimelineProgress() {
+        const rect = timeline.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const start = viewportHeight * 0.40;
+        const end = -rect.height * 0.8;
+        let progress = (start - rect.top) / (start - end);
+        progress = Math.max(0, Math.min(1, progress));
+
+        const lineHeight = Math.max(timeline.offsetHeight - 24, 0);
+        const cometY = lineHeight * progress;
+
+        timeline.style.setProperty('--timeline-progress', progress.toFixed(4));
+        timeline.style.setProperty('--timeline-comet-y', `${cometY}px`);
+    }
+
+    window.addEventListener('scroll', updateTimelineProgress, { passive: true });
+    window.addEventListener('resize', updateTimelineProgress);
+    updateTimelineProgress();
+}
+
 function initScrollEffects() {
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
     const observer = new IntersectionObserver((entries) => {
@@ -233,16 +276,16 @@ function handleNetlifySubmit(e) {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: payload
     })
-    .then(() => {
-        alert(message);
-        e.target.reset();
-    })
-    .catch((err) => {
-        console.error('Form submit error', err);
-        alert(AppState.currentLang === 'sk'
-            ? 'Odoslanie zlyhalo, skúste znova.'
-            : 'Submission failed, please try again.');
-    });
+        .then(() => {
+            alert(message);
+            e.target.reset();
+        })
+        .catch((err) => {
+            console.error('Form submit error', err);
+            alert(AppState.currentLang === 'sk'
+                ? 'Odoslanie zlyhalo, skúste znova.'
+                : 'Submission failed, please try again.');
+        });
 }
 
 function initMobileMenu() {

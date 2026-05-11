@@ -1009,6 +1009,7 @@ img {
     0 0 30px rgba(249, 115, 22, 0.18);
   transform: scaleY(var(--timeline-progress));
   transform-origin: top;
+  z-index: -2;
 }
 .timeline-item {
   position: relative;
@@ -1036,7 +1037,7 @@ img {
   opacity: var(--timeline-progress);
   transform: translateX(-50%) translate3d(0, var(--timeline-comet-y), 0);
   pointer-events: none;
-  z-index: 2;
+  z-index: 999;
 }
 .timeline-item:not(:first-child) .timeline-marker {
   display: none;

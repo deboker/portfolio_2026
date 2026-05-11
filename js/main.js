@@ -3,7 +3,8 @@ const AppState = {
     currentTheme: 'dark',
     currentSection: 'home',
     isMenuOpen: false,
-    isLoaded: false
+    isLoaded: false,
+    greetingTypingTimer: null
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -63,11 +64,14 @@ function setLanguage(lang) {
         body.setAttribute('data-dir', 'ltr');
     }
     updateLanguageUI();
+    initGreetingTyping();
 }
 
 function updateLanguageUI() {
     const textElements = document.querySelectorAll('[data-text-en], [data-text-sk]');
     textElements.forEach(element => {
+        if (element.hasAttribute('data-typing-text')) return;
+
         const enText = element.getAttribute('data-text-en');
         const skText = element.getAttribute('data-text-sk');
         if (AppState.currentLang === 'sk' && skText) {
@@ -95,6 +99,57 @@ function updateLanguageUI() {
             langText.textContent = AppState.currentLang === 'en' ? 'SK' : 'EN';
         }
     }
+}
+
+function initGreetingTyping() {
+    const greetingText = document.querySelector('.greeting-text[data-typing-text]');
+    if (!greetingText) return;
+
+    if (AppState.greetingTypingTimer) {
+        clearTimeout(AppState.greetingTypingTimer);
+        AppState.greetingTypingTimer = null;
+    }
+
+    const attrName = AppState.currentLang === 'sk' ? 'data-typing-sk' : 'data-typing-en';
+    const phrases = (greetingText.getAttribute(attrName) || '')
+        .split('|')
+        .map(phrase => phrase.trim())
+        .filter(Boolean);
+
+    if (!phrases.length) return;
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeLoop() {
+        const phrase = phrases[phraseIndex];
+        greetingText.textContent = phrase.slice(0, charIndex);
+
+        if (!isDeleting && charIndex < phrase.length) {
+            charIndex += 1;
+            AppState.greetingTypingTimer = setTimeout(typeLoop, 70);
+            return;
+        }
+
+        if (!isDeleting && charIndex === phrase.length) {
+            isDeleting = true;
+            AppState.greetingTypingTimer = setTimeout(typeLoop, 1300);
+            return;
+        }
+
+        if (isDeleting && charIndex > 0) {
+            charIndex -= 1;
+            AppState.greetingTypingTimer = setTimeout(typeLoop, 38);
+            return;
+        }
+
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        AppState.greetingTypingTimer = setTimeout(typeLoop, 280);
+    }
+
+    typeLoop();
 }
 
 function initTheme() {

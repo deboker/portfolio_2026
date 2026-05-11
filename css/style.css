@@ -1615,7 +1615,7 @@ img {
     padding-bottom: 3rem;
   }
   .timeline-marker {
-    left: -1.82rem;
+    left: -1.42rem;
     width: 24px;
     height: 24px;
   }
@@ -1715,6 +1715,9 @@ img {
   .badge-content {
     display: none;
   }
+  .hero-greeting {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1808,7 +1811,7 @@ img {
     padding-bottom: 2.5rem;
   }
   .timeline-marker {
-    left: -1.31rem;
+    left: -0.96rem;
     width: 22px;
     height: 22px;
   }

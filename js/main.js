@@ -319,12 +319,27 @@ function initFormHandlers() {
 
 function handleNetlifySubmit(e) {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    const form = e.target;
+    const submitButton = form.querySelector('.btn-submit');
+    const submitText = submitButton ? submitButton.querySelector('span') : null;
+    const submitIcon = submitButton ? submitButton.querySelector('i') : null;
+    const formData = new FormData(form);
     const payload = new URLSearchParams(formData).toString();
 
-    const message = AppState.currentLang === 'sk'
-        ? 'Správa bola odoslaná!'
-        : 'Message sent successfully!';
+    if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.classList.add('is-loading');
+    }
+
+    if (submitText) {
+        submitText.textContent = AppState.currentLang === 'sk'
+            ? 'Odosielam...'
+            : 'Sending...';
+    }
+
+    if (submitIcon) {
+        submitIcon.className = 'fas fa-spinner fa-spin';
+    }
 
     fetch('/', {
         method: 'POST',
@@ -332,15 +347,42 @@ function handleNetlifySubmit(e) {
         body: payload
     })
         .then(() => {
-            alert(message);
-            e.target.reset();
+            showContactSuccess(form);
         })
         .catch((err) => {
             console.error('Form submit error', err);
             alert(AppState.currentLang === 'sk'
                 ? 'Odoslanie zlyhalo, skúste znova.'
                 : 'Submission failed, please try again.');
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.classList.remove('is-loading');
+            }
+            if (submitText) {
+                submitText.textContent = AppState.currentLang === 'sk'
+                    ? 'Odoslať správu'
+                    : 'Send Message';
+            }
+            if (submitIcon) {
+                submitIcon.className = 'fas fa-paper-plane';
+            }
         });
+}
+
+function showContactSuccess(form) {
+    const successMessage = document.getElementById('contactSuccess');
+    const fields = form.querySelectorAll('.form-group, .btn-submit');
+
+    fields.forEach(element => {
+        element.hidden = true;
+    });
+
+    if (successMessage) {
+        successMessage.hidden = false;
+        successMessage.classList.add('is-visible');
+    }
+
+    form.reset();
 }
 
 function initMobileMenu() {

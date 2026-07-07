@@ -1324,6 +1324,45 @@ img {
 .btn-submit {
   align-self: flex-start;
 }
+.btn-submit:disabled {
+  cursor: wait;
+  opacity: 0.8;
+}
+.form-success {
+  width: 100%;
+  padding: 3rem;
+  background: var(--bg-card);
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  border-radius: 12px;
+  color: var(--text-primary);
+  text-align: center;
+  box-shadow: 0 12px 28px rgba(16, 185, 129, 0.12);
+}
+.form-success[hidden] {
+  display: none;
+}
+.form-success-icon {
+  width: 64px;
+  height: 64px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  background: var(--gradient-3);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+}
+.form-success h3 {
+  margin-bottom: 0.75rem;
+  color: var(--primary);
+  font-family: var(--font-code);
+  font-size: 1.35rem;
+}
+.form-success p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
 
 .main-footer {
   background: var(--bg-card);

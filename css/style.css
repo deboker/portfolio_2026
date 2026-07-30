@@ -1138,9 +1138,15 @@ img {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-auto-rows: 1fr;
+  align-items: stretch;
   gap: 3rem;
 }
 .project-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -1149,7 +1155,8 @@ img {
   cursor: pointer;
 }
 .project-card-link {
-  display: block;
+  display: flex;
+  height: 100%;
   text-decoration: none;
   color: inherit;
 }
@@ -1217,6 +1224,9 @@ img {
   box-shadow: 0 5px 15px rgba(34, 211, 238, 0.3);
 }
 .project-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 3rem;
 }
 .project-title {
@@ -1235,6 +1245,7 @@ img {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin-top: auto;
 }
 
 .contact-content {
